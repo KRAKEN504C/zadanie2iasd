@@ -52,16 +52,22 @@ int main()
 	return 0;
 }
 
-
+/*
 void Lucas(int xlab, int ylab)
 {
-	int n=0;
+	int l=0,n=0;
 
-	for (;n > 1;n++)
+	if (n == 0)
+	{
+		l = 2;
+	}else
+	{if(n==1) }
+
+	for (;n > 1;)
 	{
 
 	}
 }
-
+*/
 
 //char lab[xlab][ylab] = {};
