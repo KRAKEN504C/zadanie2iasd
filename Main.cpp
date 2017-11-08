@@ -1,14 +1,15 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <cstdio>
 #include <cstdlib>
 #include <fstream>
+#include <Windows.h>
 
 using namespace std;
 int xlab, ylab;
 
-void Lucas();
+int Lucas(int n);
 
-void Printing(int xlab,int ylab,char** lab);
+void Printing(int xlab, int ylab, char** lab);
 
 void botStart(int xlab, int ylab, char** lab, int *startPointx, int *startPointy);
 void botMove(int xlab, int ylab, char** lab, int *startPointx, int *startPointy);
@@ -59,24 +60,26 @@ int main()
 				}
 			}
 
-			cout << "xlab== " << xlab << endl;
-			cout << "ylab== " << ylab << endl;
-
+			//cout << "xlab== " << xlab << endl;
+			//cout << "ylab== " << ylab << endl;
+			
+			Printing(xlab, ylab, lab);
 			botStart(xlab, ylab, lab, startPointx, startPointy);
-			Printing(xlab, ylab,lab);
+			Printing(xlab, ylab, lab);
 			do
 			{
-				botMove(xlab, ylab, lab);
+				botMove(xlab, ylab, lab,startPointx,startPointy);
 
 			} while (checkExit != 0);
-			
-			
+
+
 		}
 
 
 
 		plik.close();
-	}else //gdyby z jakiegoœ powodu plik zosta³ nieprawidlowo odczytany, lub nie odczytany w ogóle. (przypomne, ze plik ma sie nazywac labirynt.txt) 
+	}
+	else //gdyby z jakiegoÅ“ powodu plik zostaÂ³ nieprawidlowo odczytany, lub nie odczytany w ogÃ³le. (przypomne, ze plik ma sie nazywac labirynt.txt) 
 	{
 		cout << "Error! Blad odczytu pliku!" << endl;
 		system("Pause");
@@ -85,16 +88,24 @@ int main()
 	system("Pause");
 
 
-	//Lucas();
+	/*
+	int luc;
+	cin >> luc;
+	cout << Lucas(luc);
+	system("Pause");
+	*/
+
 	return 0;
 }
 
 
-void Printing(int xlab, int ylab,char** lab)
+void Printing(int xlab, int ylab, char** lab)
 {
 	for (int i = 0; i < xlab; ++i, printf("\n"))
 		for (int j = 0; j < ylab; ++j)
 			cout << (char)lab[i][j];
+	Sleep(1000);
+	system("cls");
 }
 
 void botStart(int xlab, int ylab, char** lab, int *startPointx, int *startPointy)
@@ -132,9 +143,10 @@ void botMove(int xlab, int ylab, char** lab, int *startPointx, int *startPointy)
 }
 
 
-void Lucas()
+int Lucas(int n)
 {
-	int n0=2,n1=1,input=0;
+	/*
+	int n0 = 2, n1 = 1, input = 0;
 	long long int n;
 
 	cout << "wprowadz numer iczby lukasa, jaka chcesz otrzymac: ";
@@ -144,7 +156,8 @@ void Lucas()
 	if (input == 0)
 	{
 		cout << "zerowa liczba Lucasa wynosi " << n0 << endl;
-	}else if (input == 1) {
+	}
+	else if (input == 1) {
 		cout << "pierwsza liczba lucasa wynosi " << n1 << endl;
 	}
 	else
@@ -157,6 +170,10 @@ void Lucas()
 		input--;
 	} while (input > 1);
 	cout << " liczba Lucasa wynosi: " << n;
-	system("Pause");
-}
+	system("Pause");*/
 
+	if (n == 1)return 2;
+	if (n == 2)return 1;
+	else return Lucas(n - 2) + Lucas(n - 1);
+
+}
